@@ -87,8 +87,67 @@ public class c11_TwoHeaps {
 
     //TODO Maximize Capital (hard)
     public static int findMaximumCapital(int[] capital, int[] profits,int numberOfProjects, int initialCapital) {
-        // TODO: Write your code here  
-        return 0;
+        // TODO: Write your code here
+        int n = profits.length;
+        PriorityQueue<Integer> minHeap = new PriorityQueue<>(n, (o1, o2)->capital[o1]-capital[o2]);
+        PriorityQueue<Integer> maxHeap = new PriorityQueue<>(n, (o1, o2)->profits[o2]-profits[o1]);
+        int availableCapital = initialCapital;
+        for (int i = 0; i < capital.length; i++) {
+            minHeap.add(i);
+        }
+
+        for (int i = 0; i < numberOfProjects; i++) {
+
+            while (!minHeap.isEmpty() && capital[minHeap.peek()] <= availableCapital){
+                maxHeap.add(minHeap.poll());
+            }
+
+            if (maxHeap.isEmpty())
+                break;
+
+            availableCapital += profits[maxHeap.poll()];
+        }
+        return availableCapital;
     }
 
+    //TODO Problem Challenge 1: Next Interval (hard)
+    class Interval {
+        int start = 0;
+        int end = 0;
+
+        Interval(int start, int end) {
+            this.start = start;
+            this.end = end;
+        }
+    }
+
+    public static int[] findNextInterval(Interval[] intervals) {
+        int n = intervals.length;
+        int[] result = new int[n];
+        // TODO: Write your code here
+        PriorityQueue<Integer> maxStartHeap = new PriorityQueue<>((o1, o2)->intervals[o2].start-intervals[o1].start);
+        PriorityQueue<Integer> maxEndHeap = new PriorityQueue<>((o1, o2)->intervals[o2].end-intervals[o1].end);
+
+        for (int i = 0; i < intervals.length; i++) {
+            maxEndHeap.add(i);
+            maxStartHeap.add(i);
+        }
+
+        for (int i = 0; i < n; i++) {
+            int topEnd = maxEndHeap.poll();
+            result[topEnd] = -1;
+
+            if (intervals[topEnd].end <= intervals[maxStartHeap.peek()].start){
+                int topStart = maxStartHeap.poll();
+
+                while (!maxStartHeap.isEmpty() && intervals[topEnd].end <= intervals[maxStartHeap.peek()].start){
+                    topStart = maxStartHeap.poll();
+                }
+
+                result[topEnd] = topStart;
+                maxStartHeap.add(topStart);
+            }
+        }
+        return result;
+    }
 }
