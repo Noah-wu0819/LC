@@ -204,3 +204,34 @@ public class c5_Merge_Intervals {
         return result;
     }
 }
+
+//    public String TOP_N_KEYS(int n) {
+//
+//
+//        List<Map.Entry<String, Integer>> list = new ArrayList<>(numHashMap.entrySet());
+//
+//        Collections.sort(list, new Comparator<Map.Entry<String, Integer>>() {
+//            @Override
+//            public int compare(Map.Entry<String, Integer> entry1, Map.Entry<String, Integer> entry2) {
+//                int valueComparison = entry2.getValue().compareTo(entry1.getValue());
+//
+//                if (valueComparison == 0) {
+//                    return entry1.getKey().compareTo(entry2.getKey());
+//                }
+//
+//                return valueComparison;
+//            }
+//        });
+//
+//        StringBuilder result = new StringBuilder();
+//        for (int i = 0; i < Math.min(n, list.size()); i++) {
+//            Map.Entry<String, Integer> entry = list.get(i);
+//            result.append(entry.getKey()).append("(").append(entry.getValue()).append("), ");
+//        }
+//
+//        if (result.length() > 0) {
+//            result.setLength(result.length() - 2);
+//        }
+//        return result.toString();
+//    }
+
