@@ -68,4 +68,57 @@ public class c12_Subsets {
         // TODO: Write your code here
         return permutations;
     }
+
+    //TODO Problem Challenge 1: Evaluate Expression (hard)
+    public static List<Integer> diffWaysToEvaluateExpression(String input) {
+        List<Integer> result = new ArrayList<>();
+        // TODO: Write your code here
+        if(!input.contains("+") && !input.contains("-") && !input.contains("*")){
+            result.add(Integer.parseInt(input));
+        }else {
+            for (int i = 0; i < input.length(); i++) {
+                if (!Character.isDigit(input.charAt(i))){
+                    List<Integer> left = diffWaysToEvaluateExpression(input.substring(0, i));
+                    List<Integer> right = diffWaysToEvaluateExpression(input.substring(i+1));
+
+                    for (int l: left){
+                        for(int r: right){
+                            if (input.charAt(i) == '+'){
+                                result.add(l+r);
+                            }else if (input.charAt(i) == '-'){
+                                result.add(l-r);
+                            } else if (input.charAt(i) == '*') {
+                                result.add(l*r);
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        //pay more attention to the scope of List<Integer> varaiables can help me understand this code better
+        return result;
+    }
+    //TODO Problem Challenge 2: Structurally Unique Binary Search Trees (hard)
+    class TreeNode {
+        int val;
+        TreeNode left;
+        TreeNode right;
+
+        TreeNode(int x) {
+            val = x;
+        }
+    };
+    public static List<Integer> findUniqueTrees(int n) {
+        List<TreeNode> list = new ArrayList<>();
+        List<Integer> result = new ArrayList<>();
+        // TODO: Write your code here
+
+
+        //Do not modify this code
+        for(TreeNode tree : list )
+        {
+            result.add(tree.val);
+        }
+        return result;
+    }
 }
