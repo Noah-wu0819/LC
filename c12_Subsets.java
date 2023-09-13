@@ -123,7 +123,7 @@ public class c12_Subsets {
         }
 
         for (int i = start; i <= end; i++) {
-            List<TreeNode> leftTree = findUniqueTreesRecursive(start, i);
+            List<TreeNode> leftTree = findUniqueTreesRecursive(start, i-1);
             List<TreeNode> rightTree = findUniqueTreesRecursive(i+1, end);
 
             for (TreeNode left: leftTree){
@@ -138,4 +138,19 @@ public class c12_Subsets {
         return result;
     }
     // understand the recursive method further to solve BST
+
+    //TODO Problem Challenge 3: Count of Structurally Unique Binary Search Trees (hard)
+    public int countTrees(int n) {
+        int count = 0;
+        // TODO: Write your code here
+        if (n <= 1)
+            return 1;
+        for (int i = 1; i <= n; i++) {
+            int leftCount = countTrees(i-1);
+            int rightCount = countTrees(n-i);
+
+            count += leftCount * rightCount;
+        }
+        return count;
+    }
 }
