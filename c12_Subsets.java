@@ -99,7 +99,7 @@ public class c12_Subsets {
         return result;
     }
     //TODO Problem Challenge 2: Structurally Unique Binary Search Trees (hard)
-    class TreeNode {
+    static class TreeNode {
         int val;
         TreeNode left;
         TreeNode right;
@@ -108,17 +108,34 @@ public class c12_Subsets {
             val = x;
         }
     };
-    public static List<Integer> findUniqueTrees(int n) {
-        List<TreeNode> list = new ArrayList<>();
-        List<Integer> result = new ArrayList<>();
-        // TODO: Write your code here
+    public static List<TreeNode> findUniqueTrees(int n) {
+        if (n <= 0)
+            return new ArrayList<TreeNode>();
 
+        return findUniqueTreesRecursive(1, n);
+    }
 
-        //Do not modify this code
-        for(TreeNode tree : list )
-        {
-            result.add(tree.val);
+    private static List<TreeNode> findUniqueTreesRecursive(int start, int end) {
+        List<TreeNode> result = new ArrayList<>();
+        if (start > end){
+            result.add(null);
+            return result;
+        }
+
+        for (int i = start; i <= end; i++) {
+            List<TreeNode> leftTree = findUniqueTreesRecursive(start, i);
+            List<TreeNode> rightTree = findUniqueTreesRecursive(i+1, end);
+
+            for (TreeNode left: leftTree){
+                for(TreeNode right: rightTree){
+                    TreeNode root = new TreeNode(i);
+                    root.left = left;
+                    root.right = right;
+                    result.add(root);
+                }
+            }
         }
         return result;
     }
+    // understand the recursive method further to solve BST
 }
