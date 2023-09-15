@@ -138,4 +138,90 @@ public class c12_Subsets {
         // TODO: Write your code here
         return result;
     }
+
+    //TODO Problem Challenge 1: Evaluate Expression (hard)
+    public static List<Integer> diffWaysToEvaluateExpression(String input) {
+        List<Integer> result = new ArrayList<>();
+        // TODO: Write your code here
+        if(!input.contains("+") && !input.contains("-") && !input.contains("*")){
+            result.add(Integer.parseInt(input));
+        }else {
+            for (int i = 0; i < input.length(); i++) {
+                if (!Character.isDigit(input.charAt(i))){
+                    List<Integer> left = diffWaysToEvaluateExpression(input.substring(0, i));
+                    List<Integer> right = diffWaysToEvaluateExpression(input.substring(i+1));
+
+                    for (int l: left){
+                        for(int r: right){
+                            if (input.charAt(i) == '+'){
+                                result.add(l+r);
+                            }else if (input.charAt(i) == '-'){
+                                result.add(l-r);
+                            } else if (input.charAt(i) == '*') {
+                                result.add(l*r);
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        //pay more attention to the scope of List<Integer> varaiables can help me understand this code better
+        return result;
+    }
+    //TODO Problem Challenge 2: Structurally Unique Binary Search Trees (hard)
+    static class TreeNode {
+        int val;
+        TreeNode left;
+        TreeNode right;
+
+        TreeNode(int x) {
+            val = x;
+        }
+    };
+    public static List<TreeNode> findUniqueTrees(int n) {
+        if (n <= 0)
+            return new ArrayList<TreeNode>();
+
+        return findUniqueTreesRecursive(1, n);
+    }
+
+    private static List<TreeNode> findUniqueTreesRecursive(int start, int end) {
+        List<TreeNode> result = new ArrayList<>();
+        if (start > end){
+            result.add(null);
+            return result;
+        }
+
+        for (int i = start; i <= end; i++) {
+            List<TreeNode> leftTree = findUniqueTreesRecursive(start, i-1);
+            List<TreeNode> rightTree = findUniqueTreesRecursive(i+1, end);
+
+            for (TreeNode left: leftTree){
+                for(TreeNode right: rightTree){
+                    TreeNode root = new TreeNode(i);
+                    root.left = left;
+                    root.right = right;
+                    result.add(root);
+                }
+            }
+        }
+        return result;
+    }
+    // understand the recursive method further to solve BST
+
+    //TODO Problem Challenge 3: Count of Structurally Unique Binary Search Trees (hard)
+    public int countTrees(int n) {
+        int count = 0;
+        // TODO: Write your code here
+        if (n <= 1)
+            return 1;
+        for (int i = 1; i <= n; i++) {
+            int leftCount = countTrees(i-1);
+            int rightCount = countTrees(n-i);
+
+            count += leftCount * rightCount;
+        }
+        return count;
+    }
+
 }
