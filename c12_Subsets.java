@@ -65,7 +65,77 @@ public class c12_Subsets {
     //TODO String Permutations by changing case (medium)
     public static List<String> findLetterCaseStringPermutations(String str) {
         List<String> permutations = new ArrayList<>();
+        permutations.add(str);
+        char[] chars = str.toCharArray();
+        for (char c: chars){
+            int n = permutations.size();
+            for (int i = 0; i < n; i++) {
+                String newStr = permutations.get(i);
+                if (Character.isLetter(c)){
+                    if (Character.isLowerCase(c)){
+                        String ans = newStr.replace(c, Character.toUpperCase(c));
+                        permutations.add(ans);
+                    }else {
+                        String ans = newStr.replace(c, Character.toLowerCase(c));
+                        permutations.add(ans);
+                    }
+                }
+            }
+        }
+
         // TODO: Write your code here
         return permutations;
+    }
+
+    //TODO Balanced Parentheses (hard)
+    static class Parentheses{
+        String str;
+        int openCount;
+        int closeCount;
+        public Parentheses(String str, int openCount, int closeCount){
+            this.str = str;
+            this.openCount = openCount;
+            this.closeCount = closeCount;
+        }
+    }
+    public static List<String> generateValidParentheses(int num) {
+        List<String> result = new ArrayList<String>();
+        Queue<Parentheses> queue = new LinkedList<>();
+        queue.add(new Parentheses("", 0, 0));
+        while (!queue.isEmpty()){
+            Parentheses ps = queue.poll();
+            if (ps.openCount == num && ps.closeCount == num){
+                result.add(ps.str);
+            }else {
+                if (ps.openCount < num){
+                    queue.add(new Parentheses(ps.str + '(', ps.openCount+1, ps.closeCount));
+                }
+
+                if (ps.openCount > ps.closeCount){
+                    queue.add(new Parentheses(ps.str + ')', ps.openCount, ps.closeCount + 1));
+                }
+            }
+        }
+
+        // TODO: Write your code here
+        return result;
+    }
+
+    //TODO Unique Generalized Abbreviations (hard)
+    static class AbbreviatedWord {
+        StringBuilder str;
+        int start;
+        int count;
+
+        public AbbreviatedWord(StringBuilder str, int start, int count) {
+            this.str = str;
+            this.start = start;
+            this.count = count;
+        }
+    }
+    public static List<String> generateGeneralizedAbbreviation(String word) {
+        List<String> result = new ArrayList<String>();
+        // TODO: Write your code here
+        return result;
     }
 }
