@@ -164,7 +164,7 @@ public class c13_Binary_Search {
         int minDif = Integer.MAX_VALUE;
         int start = 0;
         int end = arr.length - 1;
-        
+
         return -1;
     }
 }
