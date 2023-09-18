@@ -115,7 +115,7 @@ public class c13_Binary_Search {
     //is arr[mid] not mid !!!!!!!!!!!!
 
     //TODO Search in a Sorted Infinite Array (medium)
-    class ArrayReader {
+    static class ArrayReader {
         int[] arr;
 
         ArrayReader(int[] arr) {
@@ -128,8 +128,35 @@ public class c13_Binary_Search {
             return arr[index];
         }
     }
+
+
     public static int searchInfiniteSortedArray(ArrayReader reader, int key) {
         // TODO: Write your code here
+        int start = 0, end = 1;
+        while (reader.get(end) < key){
+            int newStart = end + 1;
+            end += (end - start + 1) * 2;
+            start = newStart;
+        }
+        return binarySearch(reader, start, end, key);
+    }
+
+    private static int binarySearch(ArrayReader reader, int start, int end, int key) {
+        while (start <= end){
+            int mid = start + (end - start) / 2;
+            if (key > reader.get(mid)){
+                start = mid + 1;
+            } else if (key < reader.get(mid)) {
+                end = mid - 1;
+            }else {
+                return mid;
+            }
+        }
         return -1;
     }
+    //another way of using binary search, finding the maximum bound with start and end,
+    //to start at the beginning of the array with the bound size as 1 and exponentially increase the bound's size until
+    //we find the bounds that can have the key.
+
+    
 }
