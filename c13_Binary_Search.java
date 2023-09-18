@@ -198,4 +198,5 @@ public class c13_Binary_Search {
         }
         return arr[start];
     }
+    //Thought is very important
 }
