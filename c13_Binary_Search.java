@@ -161,13 +161,26 @@ public class c13_Binary_Search {
     //TODO Minimum Difference Element (medium)
     public static int searchMinDiffElement(int[] arr, int key) {
         // TODO: Write your code here
-
-
-        int minDif = Integer.MAX_VALUE;
         int start = 0;
         int end = arr.length - 1;
 
-
-        return -1;
+        if (key < arr[0])
+            return arr[0];
+        if(key > arr[end])
+            return arr[end];
+        while (start <= end){
+            int mid = start + (end - start) / 2;
+            if (key < arr[mid]){
+                end = mid -1;
+            } else if (key > arr[mid]) {
+                start = mid + 1;
+            }else {
+                return arr[mid];
+            }
+        }
+        if (Math.abs(arr[start] - key) >= Math.abs(arr[end] - key))
+            return arr[end];
+        else
+            return arr[start];
     }
 }
