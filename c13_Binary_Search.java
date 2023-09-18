@@ -113,4 +113,23 @@ public class c13_Binary_Search {
         return keyIndex;
     }
     //is arr[mid] not mid !!!!!!!!!!!!
+
+    //TODO Search in a Sorted Infinite Array (medium)
+    class ArrayReader {
+        int[] arr;
+
+        ArrayReader(int[] arr) {
+            this.arr = arr;
+        }
+
+        public int get(int index) {
+            if (index >= arr.length)
+                return Integer.MAX_VALUE;
+            return arr[index];
+        }
+    }
+    public static int searchInfiniteSortedArray(ArrayReader reader, int key) {
+        // TODO: Write your code here
+        return -1;
+    }
 }
