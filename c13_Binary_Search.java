@@ -162,8 +162,12 @@ public class c13_Binary_Search {
     public static int searchMinDiffElement(int[] arr, int key) {
         // TODO: Write your code here
 
-        
- origin/main
+
+        int minDif = Integer.MAX_VALUE;
+        int start = 0;
+        int end = arr.length - 1;
+
+
         return -1;
     }
 }
