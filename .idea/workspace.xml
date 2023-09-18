@@ -4,9 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="58f565e3-01b7-4f0f-836c-bdc66bf3d50f" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/c13_Binary_Search.java" beforeDir="false" afterPath="$PROJECT_DIR$/c13_Binary_Search.java" afterDir="false" />
-    </list>
+    <list default="true" id="58f565e3-01b7-4f0f-836c-bdc66bf3d50f" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -21,6 +19,9 @@
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
   </component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 1
@@ -57,7 +58,7 @@
       <workItem from="1694199545984" duration="6957000" />
       <workItem from="1694363191435" duration="14743000" />
       <workItem from="1694808844392" duration="4570000" />
-      <workItem from="1695054131202" duration="4307000" />
+      <workItem from="1695054131202" duration="4592000" />
     </task>
     <servers />
   </component>
@@ -74,16 +75,5 @@
         </entry>
       </map>
     </option>
-  </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/c11_TwoHeaps.java</url>
-          <line>17</line>
-          <option name="timeStamp" value="1" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
   </component>
 </project>
