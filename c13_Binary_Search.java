@@ -83,6 +83,34 @@ public class c13_Binary_Search {
     public static int[] findRange(int[] arr, int key) {
         int[] result = new int[] { -1, -1 };
         // TODO: Write your code here
+        result[0] = findResRange(arr, key, false);
+        if (result[0] != -1)
+            result[1] = findResRange(arr, key, true);
         return result;
     }
+
+    private static int findResRange(int[] arr, int key, boolean isFindMaxIndex) {
+        int keyIndex = -1;
+        int start = 0;
+        int end = arr.length - 1;
+
+        while (start <= end){
+            int mid = start + (end - start) / 2;
+            if (key < arr[mid]){
+                end = mid - 1;
+            } else if (key > arr[mid]) {
+                start = mid + 1;
+            } else{
+                keyIndex = mid;
+                if (isFindMaxIndex){
+                    start = mid + 1;
+                }else {
+                    end = mid - 1;
+                }
+            }
+        }
+
+        return keyIndex;
+    }
+    //is arr[mid] not mid !!!!!!!!!!!!
 }
