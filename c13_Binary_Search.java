@@ -158,5 +158,9 @@ public class c13_Binary_Search {
     //to start at the beginning of the array with the bound size as 1 and exponentially increase the bound's size until
     //we find the bounds that can have the key.
 
-    
+    //TODO Minimum Difference Element (medium)
+    public static int searchMinDiffElement(int[] arr, int key) {
+        // TODO: Write your code here
+        return -1;
+    }
 }
