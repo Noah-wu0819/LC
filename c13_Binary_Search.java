@@ -78,4 +78,11 @@ public class c13_Binary_Search {
         }
         return letters[0];
     }
+
+    //TODO Number Range (medium)
+    public static int[] findRange(int[] arr, int key) {
+        int[] result = new int[] { -1, -1 };
+        // TODO: Write your code here
+        return result;
+    }
 }
