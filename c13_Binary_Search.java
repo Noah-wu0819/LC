@@ -282,9 +282,22 @@ public class c13_Binary_Search {
    //TODO Problem Challenge 3: Rotation Count (medium)
    public static int countRotations(int[] arr) {
        // TODO: Write your code here
-       int max = findMax(arr);
-       if (max == arr.length - 1) return 0;
-       return max + 1;
+       int start = 0;
+       int end = arr.length - 1;
+       while (start <= end){
+           int mid = start + (end - start) / 2;
+           if (mid < end && arr[mid] > arr[mid + 1] )
+               return mid + 1;
+           if (mid > start && arr[mid] < arr[mid-1])
+               return mid;
+           if (arr[start] <= arr[mid]){
+               start = mid + 1;
+           }else {
+                end = mid -1;
+           }
+
+       }
+       return -1;
    }
 
 }
