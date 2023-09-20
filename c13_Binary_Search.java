@@ -200,9 +200,53 @@ public class c13_Binary_Search {
     }
     //Thought is very important
 
+    public static int findMax(int[] arr){
+        int start = 0;
+        int end = arr.length - 1;
+
+        while (start < end){
+            int mid = start + (end - start) / 2;
+            if (arr[mid] > arr[mid + 1]){
+                end = mid;
+            }else {
+                start = mid + 1;
+            }
+        }
+        return start;
+    }
+
+    public static int binaryS(int[] arr, int key, int start, int end){
+        while (start <= end){
+            int mid = start + (end - start) / 2;
+
+            if (arr[mid] == key){
+                return mid;
+            }
+            if (arr[start] < arr[end]){
+                if (key > arr[mid]){
+                    start = mid + 1;
+                }else {
+                    end = mid - 1;
+                }
+            }else {
+                if (key < arr[mid]){
+                    start = mid + 1;
+                }else {
+                    end = mid - 1;
+                }
+            }
+
+        }
+        return -1;
+    }
     //TODO Problem Challenge 1: Search Bitonic Array (medium)
     public static int search(int[] arr, int key) {
         // TODO: Write your code here
-        return -1;
+        int max = findMax(arr);
+        int index = binaryS(arr, key, 0, max);
+        if (index != -1)
+            return index;
+        index = binaryS(arr, key, max+1, arr.length - 1);
+        return index;
     }
 }
