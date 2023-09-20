@@ -249,4 +249,10 @@ public class c13_Binary_Search {
         index = binaryS(arr, key, max+1, arr.length - 1);
         return index;
     }
+
+    //TODO Problem Challenge 2: Search in Rotated Array (medium)
+    public static int search(int[] arr, int key) {
+        // TODO: Write your code here
+        return -1;
+    }
 }
