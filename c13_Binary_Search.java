@@ -199,4 +199,10 @@ public class c13_Binary_Search {
         return arr[start];
     }
     //Thought is very important
+
+    //TODO Problem Challenge 1: Search Bitonic Array (medium)
+    public static int search(int[] arr, int key) {
+        // TODO: Write your code here
+        return -1;
+    }
 }
