@@ -251,8 +251,47 @@ public class c13_Binary_Search {
     }
 
     //TODO Problem Challenge 2: Search in Rotated Array (medium)
-    public static int search(int[] arr, int key) {
-        // TODO: Write your code here
+    public static int findMax(int[] arr){
+        int start = 0;
+        int end = arr.length - 1;
+
+        while (start < end){
+            int mid = start + (end - start) / 2;
+            if (arr[mid] > arr[mid + 1]){
+                end = mid;
+            }else {
+                start = mid + 1;
+            }
+        }
+        return start;
+    }
+    public static int problem2(int[] arr, int key, int start, int end){
+        while (start <= end){
+            int mid = start + (end - start) /2 ;
+            if (arr[mid] == key) return mid;
+
+            if (key > arr[mid]){
+                start = mid + 1;
+            }else {
+                end = mid - 1;
+            }
+        }
         return -1;
     }
+    public static int search(int[] arr, int key) {
+        // TODO: Write your code here
+        int max = findMax(arr);
+        if (key > arr[arr.length - 1]){
+            return problem2(arr, key, 0, max);
+        }else {
+            return problem2(arr, key, max+1, arr.length - 1);
+        }
+    }
+
+   //TODO Problem Challenge 3: Rotation Count (medium)
+   public static int countRotations(int[] arr) {
+       // TODO: Write your code here
+       return 0;
+   }
+
 }
