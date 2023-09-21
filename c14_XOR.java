@@ -38,4 +38,19 @@ class Solution {
         }
         return new int[] { n1, n2};
     }
+
+    //TODO Complement of Base 10 Number (medium)
+    public static int bitwiseComplement(int num) {
+        // TODO: Write your code here
+        int count = 0;
+        int n = num;
+        while (n != 0){
+            count++;
+            n >>= 1;
+        }
+
+        int all_set = (int)(Math.pow(2, count) - 1);
+
+        return num ^ all_set;
+    }
 }
