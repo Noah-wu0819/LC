@@ -53,4 +53,31 @@ class Solution {
 
         return num ^ all_set;
     }
+
+    //TODO Problem Challenge 1: Flip and Invert an Image (hard)
+    public static int[][] flipAndInvertImage(int[][] arr) {
+        // TODO: Write your code here
+        int col = arr[0].length;
+        for (int i = 0; i < arr.length; i++) {
+            for (int j = 0; j < (col+1)/2; j++) {
+                int temp = arr[i][j] ^ 1;
+                arr[i][j] = arr[i][col - 1 - j] ^ 1;
+                arr[i][col - 1 - j] = temp;
+            }
+        }
+//        for (int i = 0; i < arr.length; i++) {
+//            for (int j = 0; j < arr[0].length/2; j++) {
+//                int temp = arr[i][j];
+//                arr[i][j] = arr[i][arr[0].length - 1 -j];
+//                arr[i][arr.length - 1 -j] = temp;
+//            }
+//        }
+//
+//        for (int i = 0; i < arr.length; i++) {
+//            for (int j = 0; j < arr[0].length; j++) {
+//                arr[i][j] ^= 1;
+//            }
+//        }
+        return arr;
+    }
 }
