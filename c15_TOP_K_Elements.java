@@ -111,4 +111,29 @@ public class c15_TOP_K_Elements {
         }
         return topNumbers;
     }
+
+    //TODO Frequency Sort (medium)
+    public static String sortCharacterByFrequency(String str) {
+        // TODO: Write your code here
+
+        HashMap<Character, Integer> map = new HashMap<>();
+        char[] chars = str.toCharArray();
+        for (Character c: chars){
+            map.put(c, map.getOrDefault(c, 0) + 1);
+        }
+
+        PriorityQueue<Map.Entry<Character, Integer>>
+            minHeap = new PriorityQueue<>((a, b)->b.getValue()-a.getValue());
+
+        minHeap.addAll(map.entrySet());
+        
+        StringBuilder result = new StringBuilder();
+        while (!minHeap.isEmpty()){
+            Map.Entry<Character, Integer> entry = minHeap.poll();
+            for (int i = 0; i < entry.getValue(); i++){
+                result.append(entry.getKey());
+            }
+        }
+        return result.toString();
+    }
 }
