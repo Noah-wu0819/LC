@@ -70,4 +70,22 @@ public class c15_TOP_K_Elements {
         }
         return new ArrayList<Point>(maxHeap);
     }
+
+    //TODO Connect Ropes (easy)
+    public static int minimumCostToConnectRopes(int[] ropeLengths) {
+        // TODO: Write your code here
+        PriorityQueue<Integer> minHeap = new PriorityQueue<>((a,b)->a-b);
+        for (int i = 0; i < ropeLengths.length; i++) {
+            minHeap.add(ropeLengths[i]);
+        }
+        int result = 0;
+        while (minHeap.size() > 1){
+            int a = minHeap.poll();
+            int b = minHeap.poll();
+            result += a+b;
+            minHeap.add(a+b);
+        }
+
+        return result;
+    }
 }
