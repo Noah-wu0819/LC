@@ -1,3 +1,4 @@
+import java.nio.channels.Pipe;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.PriorityQueue;
@@ -36,5 +37,37 @@ public class c15_TOP_K_Elements {
         }
         return maxheap.poll();
     }
-    
+
+    //TODO 'K' Closest Points to the Origin (easy)
+
+    class Point {
+        int x;
+        int y;
+
+        public Point(int x, int y) {
+            this.x = x;
+            this.y = y;
+        }
+
+        public int distFromOrigin() {
+            // ignoring sqrt
+            return (x * x) + (y * y);
+        }
+    }
+    public static List<Point> findClosestPoints(Point[] points, int k) {
+        // TODO: Write your code here
+        PriorityQueue<Point> maxHeap = new PriorityQueue<>((a, b)->b.distFromOrigin()-a.distFromOrigin());
+
+        for (int i = 0; i < k; i++) {
+            maxHeap.add(points[i]);
+        }
+
+        for (int i = k ; i < points.length; i++) {
+            if (points[i].distFromOrigin() < maxHeap.peek().distFromOrigin()){
+                maxHeap.poll();
+                maxHeap.add(points[i]);
+            }
+        }
+        return new ArrayList<Point>(maxHeap);
+    }
 }
