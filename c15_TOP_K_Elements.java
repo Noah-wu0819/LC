@@ -1,7 +1,5 @@
 import java.nio.channels.Pipe;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.PriorityQueue;
+import java.util.*;
 
 public class c15_TOP_K_Elements {
     //Introduction to Top 'K' Elements Pattern
@@ -87,5 +85,30 @@ public class c15_TOP_K_Elements {
         }
 
         return result;
+    }
+
+    //TODO Top 'K' Frequent Numbers (medium)
+    public static List<Integer> findTopKFrequentNumbers(int[] nums, int k) {
+        List<Integer> topNumbers = new ArrayList<>(k);
+        // TODO: Write your code here
+        HashMap<Integer, Integer> map = new HashMap<>();
+        for (int i = 0; i < nums.length; i++) {
+            map.put(nums[i], map.getOrDefault(nums[i], 0) + 1);
+        }
+
+        PriorityQueue<Map.Entry<Integer, Integer>> minHeap = new PriorityQueue<>((a, b)->a.getValue()-b.getValue());
+
+        for (Map.Entry<Integer, Integer> entry : map.entrySet()) {
+                minHeap.add(entry);
+                if (minHeap.size() > k){
+                    minHeap.poll();
+                }
+
+        }
+
+        for (int i = 0; i < k; i++) {
+            topNumbers.add(minHeap.poll().getKey());
+        }
+        return topNumbers;
     }
 }
