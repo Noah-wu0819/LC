@@ -126,7 +126,7 @@ public class c15_TOP_K_Elements {
             minHeap = new PriorityQueue<>((a, b)->b.getValue()-a.getValue());
 
         minHeap.addAll(map.entrySet());
-        
+
         StringBuilder result = new StringBuilder();
         while (!minHeap.isEmpty()){
             Map.Entry<Character, Integer> entry = minHeap.poll();
@@ -135,5 +135,32 @@ public class c15_TOP_K_Elements {
             }
         }
         return result.toString();
+    }
+
+    //TODO Kth Largest Number in a Stream (medium)
+    class Solution {
+        PriorityQueue<Integer> minHeap;
+        int k;
+        public Solution(int[] nums, int k) {
+            // TODO: Write your code here
+            this.k = k;
+            this.minHeap = new PriorityQueue<>((a,b)->a-b);
+            for (int i = 0; i < nums.length; i++) {
+                minHeap.add(nums[i]);
+                if (minHeap.size() > k){
+                    minHeap.poll();
+                }
+            }
+        }
+
+        public int add(int num) {
+            // TODO: Write your code here
+            minHeap.add(num);
+            if (minHeap.size() > k) {
+                minHeap.poll();
+            }
+            return minHeap.peek();
+        }
+
     }
 }
