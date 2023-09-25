@@ -24,8 +24,17 @@ public class c15_TOP_K_Elements {
     //TODO Kth Smallest Number (easy)
     public static int findKthSmallestNumber(int[] nums, int k) {
         // TODO: Write your code here
-        PriorityQueue<Integer> minheap = new PriorityQueue<>((a, b)->a-b);
-        
-        return 0;
+        PriorityQueue<Integer> maxheap = new PriorityQueue<>((a, b)->b-a);
+        for (int i = 0; i < k; i++) {
+            maxheap.add(nums[i]);
+        }
+        for (int i = k; i < nums.length; i++) {
+            if(nums[i] < maxheap.peek()){
+                maxheap.poll();
+                maxheap.add(nums[i]);
+            }
+        }
+        return maxheap.poll();
     }
+    
 }
