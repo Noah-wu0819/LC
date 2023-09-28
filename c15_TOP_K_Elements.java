@@ -163,4 +163,21 @@ public class c15_TOP_K_Elements {
         }
 
     }
+
+    //TODO 'K' Closest Numbers (medium)
+    class Entry {
+        int key;
+        int value;
+
+        public Entry(int key, int value) {
+            this.key = key;
+            this.value = value;
+        }
+    }
+
+    public static List<Integer> findClosestElements(int[] arr, int K, int X) {
+        List<Integer> result = new ArrayList<>();
+        // TODO: Write your code here
+        return result;
+    }
 }
