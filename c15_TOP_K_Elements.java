@@ -250,4 +250,11 @@ public class c15_TOP_K_Elements {
         return low;
     }
     //堆新元素会插到末尾
+
+    //TODO Maximum Distinct Elements (medium)
+    public static int findMaximumDistinctElements(int[] nums, int k) {
+        int distinctElementsCount = 0;
+        // TODO: Write your code here
+        return distinctElementsCount;
+    }
 }
