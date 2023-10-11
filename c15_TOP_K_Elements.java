@@ -254,8 +254,30 @@ public class c15_TOP_K_Elements {
     //TODO Maximum Distinct Elements (medium)
     public static int findMaximumDistinctElements(int[] nums, int k) {
         int distinctElementsCount = 0;
+        HashMap<Integer, Integer> map = new HashMap<>();
+        for (int i = 0; i < nums.length; i++) {
+            map.put(nums[i], map.getOrDefault(nums[i], 0) + 1);
+        }
+
+        PriorityQueue<Map.Entry<Integer,Integer>> minHeap = new PriorityQueue<>((a,b)->a.getValue()-b.getValue());
+        for (Map.Entry<Integer,Integer> entry: map.entrySet()){
+            if (entry.getValue() == 1){
+                distinctElementsCount++;
+            }else
+            minHeap.add(entry);
+        }
+        while (k > 0 && !minHeap.isEmpty()){
+            Map.Entry<Integer, Integer> entry = minHeap.poll();
+            k -= entry.getValue() - 1;
+            if (k >= 0){
+                distinctElementsCount++;
+            }
+        }
+        if (k > 0)
+            distinctElementsCount -= k;
         // TODO: Write your code here
         return distinctElementsCount;
     }
-    //
+    //Maximum Distinct Elements (medium)
+
 }
