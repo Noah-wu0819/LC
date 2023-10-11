@@ -258,4 +258,5 @@ public class c15_TOP_K_Elements {
         return distinctElementsCount;
     }
     //TODO
+    public static int findMaximumDistinctElements2(int[] nums, int k) {}
 }
