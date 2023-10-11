@@ -278,6 +278,25 @@ public class c15_TOP_K_Elements {
         // TODO: Write your code here
         return distinctElementsCount;
     }
-    //Maximum Distinct Elements (medium)
+    //TODO Sum of Elements (medium)
+
+    public static int findSumOfElements(int[] nums, int k1, int k2) {
+        int elementSum = 0;
+        // TODO: Write your code here
+        PriorityQueue<Integer> minHeap = new PriorityQueue<>((a,b)->a-b);
+        for (int n: nums){
+            minHeap.add(n);
+        }
+        k1 = k1 < k2? k1: k2;
+        for (int i = 0; i < nums.length; i++) {
+
+            if (i >= k1 && i < k2-1){
+                elementSum += minHeap.poll();
+            }else {
+                minHeap.poll();
+            }
+        }
+        return elementSum;
+    }
 
 }
