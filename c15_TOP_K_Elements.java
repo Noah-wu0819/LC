@@ -257,5 +257,4 @@ public class c15_TOP_K_Elements {
         // TODO: Write your code here
         return distinctElementsCount;
     }
-    //
 }
