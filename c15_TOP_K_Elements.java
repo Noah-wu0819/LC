@@ -299,4 +299,31 @@ public class c15_TOP_K_Elements {
         return elementSum;
     }
 
+    //TODO Rearrange String (hard)
+    public static String rearrangeString(String str) {
+        // TODO: Write your code here
+        HashMap<Character, Integer> map = new HashMap<>();
+        for (char c: str.toCharArray()){
+            map.put(c, map.getOrDefault(c, 0 ) + 1);
+        }
+        PriorityQueue<Map.Entry<Character, Integer>> maxHeap = new PriorityQueue<>(
+                (a,b)->b.getValue() - a.getValue()
+        );
+
+        maxHeap.addAll(map.entrySet());
+
+        Map.Entry<Character, Integer> preEntry = null;
+        StringBuilder ans = new StringBuilder(str.length());
+
+        while (!maxHeap.isEmpty()){
+            Map.Entry<Character, Integer> curEntry = maxHeap.poll();
+            ans.append(curEntry.getKey());
+            curEntry.setValue(curEntry.getValue() - 1);
+            if (preEntry != null && preEntry.getValue() > 0)
+                maxHeap.add(preEntry);
+            preEntry = curEntry;
+        }
+        return ans.length() == str.length()? ans.toString():"";
+    }
+
 }
