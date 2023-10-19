@@ -436,4 +436,19 @@ public class c15_TOP_K_Elements {
         }
         return curElement.number;
     }
+
+    //TODO Merge K Sorted Lists (medium)
+    class ListNode {
+        int val;
+        ListNode next;
+
+        ListNode(int value) {
+            this.val = value;
+        }
+    }
+    public static ListNode merge(ListNode[] lists) {
+        ListNode resultHead = null;
+        // TODO: Write your code here
+        return resultHead;
+    }
 }
