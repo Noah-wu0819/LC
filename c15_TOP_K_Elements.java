@@ -354,4 +354,33 @@ public class c15_TOP_K_Elements {
         }
         return ans.length() == str.length()? ans.toString() : "";
     }
+    //TODO Problem Challenge 2: Scheduling Tasks
+    public static int scheduleTasks(char[] tasks, int k) {
+        int intervalCount = 0;
+        Map<Character, Integer> map = new HashMap<>();
+        for (char c: tasks){
+            map.put(c, map.getOrDefault(c, 0) + 1);
+        }
+        PriorityQueue<Map.Entry<Character, Integer>> maxHeap = new PriorityQueue<>((a,b)->b.getValue() - a.getValue());
+
+        maxHeap.addAll(map.entrySet());
+        // TODO: Write your code here
+
+        while (!maxHeap.isEmpty()){
+            List<Map.Entry<Character, Integer>> waitList = new ArrayList<>();
+            int n = k + 1;
+            for (; n>0 && !maxHeap.isEmpty(); n--){
+                intervalCount++;
+                Map.Entry<Character, Integer> curEntry = maxHeap.poll();
+                if(curEntry.getValue() > 1){
+                    curEntry.setValue(curEntry.getValue() - 1);
+                    waitList.add(curEntry);
+                }
+            }
+            maxHeap.addAll(waitList);
+            if (!maxHeap.isEmpty())
+                intervalCount += n;
+        }
+        return intervalCount;
+    }
 }
