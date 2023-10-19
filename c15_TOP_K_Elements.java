@@ -254,7 +254,77 @@ public class c15_TOP_K_Elements {
     //TODO Maximum Distinct Elements (medium)
     public static int findMaximumDistinctElements(int[] nums, int k) {
         int distinctElementsCount = 0;
+        HashMap<Integer, Integer> map = new HashMap<>();
+        for (int i = 0; i < nums.length; i++) {
+            map.put(nums[i], map.getOrDefault(nums[i], 0) + 1);
+        }
+
+        PriorityQueue<Map.Entry<Integer,Integer>> minHeap = new PriorityQueue<>((a,b)->a.getValue()-b.getValue());
+        for (Map.Entry<Integer,Integer> entry: map.entrySet()){
+            if (entry.getValue() == 1){
+                distinctElementsCount++;
+            }else
+            minHeap.add(entry);
+        }
+        while (k > 0 && !minHeap.isEmpty()){
+            Map.Entry<Integer, Integer> entry = minHeap.poll();
+            k -= entry.getValue() - 1;
+            if (k >= 0){
+                distinctElementsCount++;
+            }
+        }
+        if (k > 0)
+            distinctElementsCount -= k;
         // TODO: Write your code here
         return distinctElementsCount;
     }
+
+    //TODO Sum of Elements (medium)
+
+    public static int findSumOfElements(int[] nums, int k1, int k2) {
+        int elementSum = 0;
+        // TODO: Write your code here
+        PriorityQueue<Integer> minHeap = new PriorityQueue<>((a,b)->a-b);
+        for (int n: nums){
+            minHeap.add(n);
+        }
+        k1 = k1 < k2? k1: k2;
+        for (int i = 0; i < nums.length; i++) {
+
+            if (i >= k1 && i < k2-1){
+                elementSum += minHeap.poll();
+            }else {
+                minHeap.poll();
+            }
+        }
+        return elementSum;
+    }
+
+    //TODO Rearrange String (hard)
+    public static String rearrangeString(String str) {
+        // TODO: Write your code here
+        HashMap<Character, Integer> map = new HashMap<>();
+        for (char c: str.toCharArray()){
+            map.put(c, map.getOrDefault(c, 0 ) + 1);
+        }
+        PriorityQueue<Map.Entry<Character, Integer>> maxHeap = new PriorityQueue<>(
+                (a,b)->b.getValue() - a.getValue()
+        );
+
+        maxHeap.addAll(map.entrySet());
+
+        Map.Entry<Character, Integer> preEntry = null;
+        StringBuilder ans = new StringBuilder(str.length());
+
+        while (!maxHeap.isEmpty()){
+            Map.Entry<Character, Integer> curEntry = maxHeap.poll();
+            ans.append(curEntry.getKey());
+            curEntry.setValue(curEntry.getValue() - 1);
+            if (preEntry != null && preEntry.getValue() > 0)
+                maxHeap.add(preEntry);
+            preEntry = curEntry;
+        }
+        return ans.length() == str.length()? ans.toString():"";
+    }
+
 }
