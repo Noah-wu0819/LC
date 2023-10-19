@@ -326,5 +326,32 @@ public class c15_TOP_K_Elements {
         }
         return ans.length() == str.length()? ans.toString():"";
     }
+    //TODO Problem Challenge 1: Rearrange String K Distance Apart (hard)
+    public static String reorganizeString(String str, int k) {
+        // TODO: Write your code here
+        HashMap<Character, Integer> map = new HashMap<>();
+        for (char c: str.toCharArray()){
+            map.put(c, map.getOrDefault(c, 0 ) + 1);
+        }
+        PriorityQueue<Map.Entry<Character, Integer>> maxHeap = new PriorityQueue<>(
+                (a,b)->b.getValue() - a.getValue()
+        );
 
+        maxHeap.addAll(map.entrySet());
+        Queue<Map.Entry<Character, Integer>> queue = new LinkedList<>();
+        StringBuilder ans = new StringBuilder(str.length());
+
+        while (!maxHeap.isEmpty()){
+            Map.Entry<Character, Integer> curEntry = maxHeap.poll();
+            ans.append(curEntry.getKey());
+            curEntry.setValue(curEntry.getValue() - 1);
+            queue.add(curEntry);
+            if (queue.size() == k){
+                if (queue.peek().getValue() > 0) {
+                    maxHeap.add(queue.poll());
+                }
+            }
+        }
+        return ans.length() == str.length()? ans.toString() : "";
+    }
 }
