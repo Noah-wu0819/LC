@@ -1,3 +1,4 @@
+import javax.management.modelmbean.ModelMBean;
 import java.nio.channels.Pipe;
 import java.util.*;
 
@@ -382,5 +383,57 @@ public class c15_TOP_K_Elements {
                 intervalCount += n;
         }
         return intervalCount;
+    }
+
+    //TODO Problem Challenge 3: Frequency Stack (hard)
+
+    public int execute(int[] nums){
+        int result = 0;
+        for(int i=0;i<nums.length;i++)  {
+            push(nums[i]);
+        }
+        pop();
+        pop();
+        result = pop();
+        return result;
+    }
+    class Element{
+        int number;
+        int frequency;
+        int sequenceNumber;
+        public Element(int number, int frequency, int sequenceNumber){
+            this.number = number;
+            this.frequency = frequency;
+            this.sequenceNumber = sequenceNumber;
+        }
+    }
+    class myComparator implements Comparator<Element>{
+
+        @Override
+        public int compare(Element o1, Element o2) {
+            if (o1.frequency != o2.frequency){
+                return o2.frequency - o1.frequency;
+            }
+            return o2.sequenceNumber - o1.sequenceNumber;
+        }
+    }
+    int sequenceNumber = 0;
+    Map<Integer, Integer> frequencyMap = new HashMap<>();
+    PriorityQueue<Element> maxHeap = new PriorityQueue<>(new myComparator());
+    public void push(int num) {
+        // TODO: Write your code here
+        frequencyMap.put(num, frequencyMap.getOrDefault(num, 0) + 1);
+        maxHeap.add(new Element(num, frequencyMap.get(num), sequenceNumber++));
+    }
+
+    public int pop() {
+        // TODO: Write your code here
+        Element curElement = maxHeap.poll();
+        if(curElement.frequency > 1){
+            frequencyMap.put(curElement.number, curElement.frequency - 1);
+        }else {
+            frequencyMap.remove(curElement.number);
+        }
+        return curElement.number;
     }
 }
