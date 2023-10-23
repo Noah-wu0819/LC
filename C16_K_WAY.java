@@ -28,6 +28,38 @@ public class C16_K_WAY {
         }
         return head;
     }
+
+    //TODO Kth Smallest Number in M Sorted Lists (medium)
+    public static int findKthSmallest(List<List<Integer>> lists, int k) {
+        int result = 0;
+        PriorityQueue<Node> minHeap = new PriorityQueue<>((a,b)->
+                lists.get(a.arrayIndex).get(a.elementIndex) - lists.get(b.arrayIndex).get(b.elementIndex)
+        );
+
+        for (int i = 0; i < lists.size(); i++) {
+            if (lists.get(i) != null)
+                minHeap.add(new Node(0, i));
+        }
+        int numberCount = 0;
+        while (!minHeap.isEmpty()){
+            Node node = minHeap.poll();
+            result = lists.get(node.arrayIndex).get(node.elementIndex);
+            if (++numberCount == k) break;
+            node.elementIndex++;
+            if (node.elementIndex < lists.get(node.arrayIndex).size())//elementIndex必须在++之后在检查，要不然出界了
+                minHeap.add(node);
+        }
+
+        return result;
+    }
+}
+class Node{
+    int elementIndex;
+    int arrayIndex;
+    Node(int elementIndex, int arrayIndex){
+        this.elementIndex = elementIndex;
+        this.arrayIndex = arrayIndex;
+    }
 }
 class ListNode {
     int val;
