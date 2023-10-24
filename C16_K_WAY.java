@@ -72,6 +72,35 @@ public class C16_K_WAY {
         }
         return result;
     }
+
+    //TODO Smallest Number Range (hard)
+    public static int[] findSmallestRange(List<List<Integer>> lists) {
+        int curMax = 0;
+        // TODO: Write your code here
+        PriorityQueue<Node> minHeap = new PriorityQueue<>((a,b)->
+                lists.get(a.arrayIndex).get(a.elementIndex)-lists.get(b.arrayIndex).get(b.elementIndex));
+
+        for (int i = 0; i < lists.size(); i++) {
+            minHeap.add(new Node(0, i));
+            curMax = Math.max(curMax, lists.get(i).get(0));
+        }
+
+        int rangeStart = 0;
+        int rangeEnd = Integer.MAX_VALUE;
+        while (minHeap.size() == lists.size()){
+            Node node = minHeap.poll();
+            if (rangeEnd - rangeStart > curMax - lists.get(node.arrayIndex).get(node.elementIndex)){
+                rangeStart = lists.get(node.arrayIndex).get(node.elementIndex);
+                rangeEnd = curMax;
+            }
+            node.elementIndex++;
+            if (node.elementIndex < lists.get(node.arrayIndex).size()){
+                minHeap.add(node);
+                curMax = Math.max(curMax, lists.get(node.arrayIndex).get(node.elementIndex));
+            }
+        }
+        return new int[] { rangeStart, rangeEnd };
+    }
 }
 class Matrix{
     int row,col;
