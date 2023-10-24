@@ -1,5 +1,9 @@
+import java.util.ArrayList;
+import java.util.List;
+
 public class C17_01Knapsack {
     //TODO 0/1 Knapsack (medium)
+    //Chanllenge 没有完成
     public int solveKnapsack(int[] profits, int[] weights, int capacity) {
         // TODO: Write your code here
         //Integer[][] dp = new Integer[profits.length][capacity+1];
@@ -50,4 +54,18 @@ public class C17_01Knapsack {
         return dp[currentIndex][capacity];
     }
 
+    private void printSelectedElements(int[][] dp, int[] weights, int[] profits, int capacity){
+        List<Integer> elementsWeights = new ArrayList<>();
+        int totalProfit = dp[weights.length-1][capacity];
+        for (int i = weights.length-1 ;i > 0; i--) {
+            if (totalProfit != dp[i-1][capacity]){
+                elementsWeights.add(weights[i]);
+                totalProfit -= profits[i];
+                capacity -= weights[i];
+            }
+        }
+
+        if (totalProfit != 0)
+            elementsWeights.add(weights[0] );
+    }
 }
