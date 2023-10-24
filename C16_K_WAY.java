@@ -108,6 +108,7 @@ public class C16_K_WAY {
 
         for (int i = 0; i < nums1.length && i < k; i++) {
             for (int j = 0; j < nums2.length && j < k; j++) {
+                //这里设置了i < k和 j<k为了缩短时间，是很有必要的，因为本身降序排列，k个数之后肯定是小的，所以去掉
                 if (minHeap.size() < k){
                     minHeap.add(Arrays.asList(nums1[i], nums2[j]));
                 }else{
