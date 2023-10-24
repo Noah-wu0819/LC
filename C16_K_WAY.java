@@ -1,4 +1,5 @@
 import java.util.List;
+import java.util.Map;
 import java.util.PriorityQueue;
 
 public class C16_K_WAY {
@@ -51,6 +52,32 @@ public class C16_K_WAY {
         }
 
         return result;
+    }
+
+    //TODO Kth Smallest Number in a Sorted Matrix (hard)
+    public static int findKthSmallest(int[][] matrix, int k) {
+        int result = 0;
+        // TODO: Write your code here
+        PriorityQueue<Matrix> minHeap = new PriorityQueue<>((a,b)->matrix[a.row][a.col] - matrix[b.row][b.col]);
+        for (int i = 0; i < matrix.length; i++) {
+            minHeap.add(new Matrix(i, 0));
+        }
+        int index = 0;
+        while (!minHeap.isEmpty()){
+            Matrix node = minHeap.poll();
+            result = matrix[node.row][node.col];
+            if (++index == k) break;
+            node.col++;
+            if (node.col < matrix.length) minHeap.add(node);
+        }
+        return result;
+    }
+}
+class Matrix{
+    int row,col;
+    Matrix(int row, int col){
+        this.row = row;
+        this.col = col;
     }
 }
 class Node{
