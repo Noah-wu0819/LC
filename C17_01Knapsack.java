@@ -73,6 +73,26 @@ public class C17_01Knapsack {
     //method 1 brute force
     public boolean canPartition(int[] num) {
         //TODO: Write - Your - Code
-        return false;
+        int sum = 0;
+        for (int i = 0; i < num.length; i++) {
+            sum += num[i];
+        }
+        if (sum % 2 != 0)
+            return false;
+
+
+        return this.canPartitionRecursive(num, sum/2, 0);
+    }
+
+    public boolean canPartitionRecursive(int[] num, int sum, int currentIndex){
+        if (sum == 0) return true;
+        if (num.length ==0 || currentIndex >= num.length) return  false;
+
+        if (num[currentIndex] <= sum){
+            if (canPartitionRecursive(num, sum - num[currentIndex], currentIndex + 1)){
+                return true;
+            }
+        }
+        return canPartitionRecursive(num, sum, currentIndex+1);
     }
 }
