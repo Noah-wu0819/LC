@@ -68,4 +68,11 @@ public class C17_01Knapsack {
         if (totalProfit != 0)
             elementsWeights.add(weights[0] );
     }
+
+    //TODO Equal Subset Sum Partition (medium)
+    //method 1 brute force
+    public boolean canPartition(int[] num) {
+        //TODO: Write - Your - Code
+        return false;
+    }
 }
